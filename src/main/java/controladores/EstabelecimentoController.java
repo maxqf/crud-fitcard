@@ -138,6 +138,7 @@ public class EstabelecimentoController implements Serializable {
 	 * */
 	public String editar() {
 			
+		//Não reseta a entidade
 		cadastrar(false);
 		
 		return viewEditar();
@@ -282,7 +283,9 @@ public class EstabelecimentoController implements Serializable {
 		//resetaControlador();
 
 		estabelecimento = new Estabelecimento();
-
+		
+		resetaControlador();
+		
 		return viewCadastro();
 	}
 
