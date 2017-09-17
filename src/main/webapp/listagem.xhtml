@@ -11,7 +11,7 @@
 		<div class="inner-row">
 				<h:form id="form">	    
 					<p:growl id="messages" showDetail="false" />
-				    <p:dataTable var="estabelecimento" value="#{mbCadastro.estabelecimentos}">
+				    <p:dataTable var="estabelecimento" value="#{mbEstabelecimento.estabelecimentos}">
 					    <p:column headerText="Razão Social">
 					        <h:outputText value="#{estabelecimento.razaoSocial}" />
 					    </p:column>
@@ -30,11 +30,11 @@
 					    
 					    <p:column headerText="Operações" styleClass="operacoes">
 					    	
-					    	<p:commandButton action="#{mbCadastro.viewAbrir(estabelecimento)}" ajax="false" value="Abrir"/>
+					    	<p:commandButton action="#{mbEstabelecimento.viewAbrir(estabelecimento)}" ajax="false" value="Abrir"/>
 					    
-						    <p:commandButton action="#{mbCadastro.viewEditar(estabelecimento)}" ajax="false" value="Editar"/>
+						    <p:commandButton action="#{mbEstabelecimento.viewEditar(estabelecimento)}" ajax="false" value="Editar"/>
 						    
-						    <p:commandButton action="#{mbCadastro.remover(estabelecimento)}" update="@form" ajax="true" value="Remover">
+						    <p:commandButton action="#{mbEstabelecimento.remover(estabelecimento)}" update="@form" ajax="true" value="Remover">
 						    	<p:confirm header="Confirmar" message="Você tem certeza que quer remover o estabelecimento?" icon="ui-icon-alert" />
 						    </p:commandButton>
 						    
@@ -46,7 +46,7 @@
 					 
 					</p:dataTable>
 					
-					<p:commandButton value="Cadastrar" action="#{mbCadastro.initCadastro}" immediate="true" ajax="false" styleClass="btnCadastrar"/>
+					<p:commandButton value="Cadastrar" action="#{mbEstabelecimento.initCadastro}" immediate="true" ajax="false" styleClass="btnCadastrar"/>
 				
 				</h:form>
 			</div>

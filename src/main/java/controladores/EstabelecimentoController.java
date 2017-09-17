@@ -25,9 +25,9 @@ import entidades.Estabelecimento;
 import entidades.Estado;
 import util.MegaUtil;
 
-@ManagedBean(name = "mbCadastro")
+@ManagedBean(name = "mbEstabelecimento")
 @SessionScoped
-public class Cadastro implements Serializable {
+public class EstabelecimentoController implements Serializable {
 
 	/**
 	 * 
@@ -341,7 +341,7 @@ public class Cadastro implements Serializable {
 	
 	public Estabelecimento getEstabelecimentoByCNPJ(String cnpj) {
 
-		TypedQuery<Estabelecimento> query = Cadastro.GerenciadorEntidade().createNamedQuery("Estabelecimento.findByCnpj", Estabelecimento.class);
+		TypedQuery<Estabelecimento> query = EstabelecimentoController.GerenciadorEntidade().createNamedQuery("Estabelecimento.findByCnpj", Estabelecimento.class);
 	    
 	    query.setParameter("cnpj", cnpj);
 	    

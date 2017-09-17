@@ -6,7 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.persistence.TypedQuery;
 
-import controladores.Cadastro;
+import controladores.EstabelecimentoController;
 import entidades.Cidade;
 
 /**
@@ -24,7 +24,7 @@ public class CidadeConverter implements Converter {
         
         Integer id = new Integer(string);
         
-        TypedQuery<Cidade> query = Cadastro.GerenciadorEntidade().createNamedQuery("Cidade.findByPkCidade", Cidade.class);
+        TypedQuery<Cidade> query = EstabelecimentoController.GerenciadorEntidade().createNamedQuery("Cidade.findByPkCidade", Cidade.class);
         
         query.setParameter("pkCidade", id);
         

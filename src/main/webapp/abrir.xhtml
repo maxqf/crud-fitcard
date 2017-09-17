@@ -14,56 +14,56 @@
 		        
 		        <h:panelGrid columns="4" cellpadding="5">
 		            <p:outputLabel for="razaoSocialId" value="Razão Social" />
-		            <h:outputText  id="razaoSocialId" value="#{mbCadastro.estabelecimento.razaoSocial}" label="Razão Social"/>
+		            <h:outputText  id="razaoSocialId" value="#{mbEstabelecimento.estabelecimento.razaoSocial}" label="Razão Social"/>
 		            
 		            <p:outputLabel for="nomeFantasiaId" value="Nome Fantasia" />
-		            <h:outputText id="nomeFantasiaId" value="#{mbCadastro.estabelecimento.nomeFantasia}" label="Nome Fantasia"/>
+		            <h:outputText id="nomeFantasiaId" value="#{mbEstabelecimento.estabelecimento.nomeFantasia}" label="Nome Fantasia"/>
 		               
 		            <p:outputLabel for="cnpjId" value="CNPJ" /> 
-		            <h:outputText  id="cnpjId" value="#{mbCadastro.estabelecimento.cnpj}" label="CPNJ" mask="99.999.999/9999-99"/>
+		            <h:outputText  id="cnpjId" value="#{mbEstabelecimento.estabelecimento.cnpj}" label="CPNJ" mask="99.999.999/9999-99"/>
 		    
 		            <p:outputLabel for="emailId" value="Email" /> 
-		            <h:outputText  id="emailId" value="#{mbCadastro.estabelecimento.email}" label="Email"/>
+		            <h:outputText  id="emailId" value="#{mbEstabelecimento.estabelecimento.email}" label="Email"/>
 		            	            
 		            <p:outputLabel for="enderecoId" value="Endereço:" /> 	            
-	                <h:outputText  id="enderecoId" value="#{mbCadastro.endereco.endereco}" label="Endereço"/>
+	                <h:outputText  id="enderecoId" value="#{mbEstabelecimento.endereco.endereco}" label="Endereço"/>
 		            
 		            <p:outputLabel for="cidadeId" value="Cidade:" />
-		            <p:selectOneMenu id="cidadeId" value="#{mbCadastro.endereco.tbcidade}" process="@this" disabled="true">
+		            <p:selectOneMenu id="cidadeId" value="#{mbEstabelecimento.endereco.tbcidade}" process="@this" disabled="true">
 		                <f:selectItem itemLabel="Selecione a cidade" itemValue="" noSelectionOption="true" />
-		                <f:selectItems value="#{mbCadastro.cidades}"/>
+		                <f:selectItems value="#{mbEstabelecimento.cidades}"/>
 		            </p:selectOneMenu>
 
 		            <p:outputLabel for="estadoId" value="Estado:" />
-		            <p:selectOneMenu id="estadoId" value="#{mbCadastro.estado}" process="@this" disabled="true">
+		            <p:selectOneMenu id="estadoId" value="#{mbEstabelecimento.estado}" process="@this" disabled="true">
 		                <p:ajax event="change" update="cidadeId"/>
 		                <f:selectItem itemLabel="Selecione o estado" itemValue="" noSelectionOption="true" />
-		                <f:selectItems value="#{mbCadastro.estados}"/>
+		                <f:selectItems value="#{mbEstabelecimento.estados}"/>
 		            </p:selectOneMenu>
 		          
 		            <p:outputLabel for="telefoneId" value="Telefone" /> 
-		            <h:outputText  id="telefoneId" value="#{mbCadastro.estabelecimento.telefone}" label="Telefone"/>
+		            <h:outputText  id="telefoneId" value="#{mbEstabelecimento.estabelecimento.telefone}" label="Telefone"/>
          
 		            <p:outputLabel for="dataCadastroId" value="Data do Cadastro:" /> 
-	           		<p:calendar id="dataCadastroId" value="#{mbCadastro.estabelecimento.dataCadastro}" pattern="dd/MM/yyyy" mask="true" disabled="true">
+	           		<p:calendar id="dataCadastroId" value="#{mbEstabelecimento.estabelecimento.dataCadastro}" pattern="dd/MM/yyyy" mask="true" disabled="true">
 	           			<p:ajax event="blur" />
     				</p:calendar>
 	                
 		            <p:outputLabel for="categoriaId" value="Categoria:" />
-		            <p:selectOneMenu id="categoriaId" value="#{mbCadastro.estabelecimento.tbcategoria}" disabled="true">
+		            <p:selectOneMenu id="categoriaId" value="#{mbEstabelecimento.estabelecimento.tbcategoria}" disabled="true">
 		                <f:selectItem itemLabel="Selecione a categoria" itemValue="" noSelectionOption="true" />
-		                <f:selectItems value="#{mbCadastro.categorias}" />
+		                <f:selectItems value="#{mbEstabelecimento.categorias}" />
 		            </p:selectOneMenu>
 	               	
 	               	<p:outputLabel for="statusId" value="Status:" />	            
-	                <p:selectOneMenu id="statusId" value="#{mbCadastro.estabelecimento.status}" label="Status" disabled="true">
+	                <p:selectOneMenu id="statusId" value="#{mbEstabelecimento.estabelecimento.status}" label="Status" disabled="true">
 			            <f:selectItem itemLabel="Ativo" itemValue="true" />
 			            <f:selectItem itemLabel="Inativo" itemValue="false" />
 			        </p:selectOneMenu>
 	                
 		        </h:panelGrid>
 		    </p:panel>	
-		 	<p:commandButton value="Listar cadastrados" action="#{mbCadastro.viewListagem}"/>
+		 	<p:commandButton value="Listar cadastrados" action="#{mbEstabelecimento.viewListagem}"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

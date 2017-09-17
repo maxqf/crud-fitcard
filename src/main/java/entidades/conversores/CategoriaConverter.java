@@ -6,7 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.persistence.TypedQuery;
 
-import controladores.Cadastro;
+import controladores.EstabelecimentoController;
 import entidades.Categoria;
 
 /**
@@ -24,7 +24,7 @@ public class CategoriaConverter implements Converter {
         
         Integer id = new Integer(string);
         
-        TypedQuery<Categoria> query = Cadastro.GerenciadorEntidade().createNamedQuery("Categoria.findByPkCategoria", Categoria.class);
+        TypedQuery<Categoria> query = EstabelecimentoController.GerenciadorEntidade().createNamedQuery("Categoria.findByPkCategoria", Categoria.class);
         
         query.setParameter("pkCategoria", id);
         
