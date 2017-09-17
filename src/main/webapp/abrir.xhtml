@@ -9,11 +9,10 @@
 	template="template/ui.xhtml">
 	<ui:define name="body">
 		<h:form id="form">
-		    <p:panel id="panel" header="Estabelecimento" style="margin-bottom:10px;">
-		        
+		    <p:panel id="panel" header="Estabelecimento" style="margin-bottom:10px;">		        
 		        <p:growl id="messages" showDetail="false" />
 		        
-		        <h:panelGrid columns="2" cellpadding="5">
+		        <h:panelGrid columns="4" cellpadding="5">
 		            <p:outputLabel for="razaoSocialId" value="Razão Social" />
 		            <h:outputText  id="razaoSocialId" value="#{mbCadastro.estabelecimento.razaoSocial}" label="Razão Social"/>
 		            
@@ -30,13 +29,13 @@
 	                <h:outputText  id="enderecoId" value="#{mbCadastro.endereco.endereco}" label="Endereço"/>
 		            
 		            <p:outputLabel for="cidadeId" value="Cidade:" />
-		            <p:selectOneMenu id="cidadeId" value="#{mbCadastro.endereco.tbcidade}" process="@this" style="width:150px" disabled="true">
+		            <p:selectOneMenu id="cidadeId" value="#{mbCadastro.endereco.tbcidade}" process="@this" disabled="true">
 		                <f:selectItem itemLabel="Selecione a cidade" itemValue="" noSelectionOption="true" />
 		                <f:selectItems value="#{mbCadastro.cidades}"/>
 		            </p:selectOneMenu>
 
 		            <p:outputLabel for="estadoId" value="Estado:" />
-		            <p:selectOneMenu id="estadoId" value="#{mbCadastro.estado}" process="@this" style="width:150px" disabled="true">
+		            <p:selectOneMenu id="estadoId" value="#{mbCadastro.estado}" process="@this" disabled="true">
 		                <p:ajax event="change" update="cidadeId"/>
 		                <f:selectItem itemLabel="Selecione o estado" itemValue="" noSelectionOption="true" />
 		                <f:selectItems value="#{mbCadastro.estados}"/>
@@ -51,8 +50,7 @@
     				</p:calendar>
 	                
 		            <p:outputLabel for="categoriaId" value="Categoria:" />
-		            <p:selectOneMenu id="categoriaId" value="#{mbCadastro.estabelecimento.tbcategoria}" style="width:150px" disabled="true">
-		               <!--  <p:ajax listener="#{dropdownView.onCountryChange}" update="city" /> -->
+		            <p:selectOneMenu id="categoriaId" value="#{mbCadastro.estabelecimento.tbcategoria}" disabled="true">
 		                <f:selectItem itemLabel="Selecione a categoria" itemValue="" noSelectionOption="true" />
 		                <f:selectItems value="#{mbCadastro.categorias}" />
 		            </p:selectOneMenu>
@@ -65,10 +63,7 @@
 	                
 		        </h:panelGrid>
 		    </p:panel>	
-		 	
-		 	<p:commandButton value="Listagem" action="#{mbCadastro.listar}"/>
-		
+		 	<p:commandButton value="Listar cadastrados" action="#{mbCadastro.viewListagem}"/>
 		</h:form>
-		
 	</ui:define>
 </ui:composition>

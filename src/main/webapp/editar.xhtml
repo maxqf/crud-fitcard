@@ -9,7 +9,7 @@
 	template="template/ui.xhtml">
 	<ui:define name="body">
 		<h:form id="form">
-		    <p:panel id="panel" header="Estabelecimento">
+		    <p:panel id="panel" header="Estabelecimento - Editar informações">
 		        
 		        <p:growl id="messages" showDetail="false" />
 		        
@@ -65,8 +65,7 @@
 	                
 		        </h:panelGrid>
 		    </p:panel>	
-		  	<p:commandButton value="Cadastrar" update="panel" actionListener="#{mbCadastro.cadastrar(true)}" ajax="false" />
-		 	<p:commandButton value="Resetar" update="panel" process="@this" actionListener="#{mbCadastro.resetaControlador}"/>
+		  	<p:commandButton value="Editar" update="panel" actionListener="#{mbCadastro.editar}" ajax="false" />
 		 	<p:commandButton value="Listar cadastros" action="#{mbCadastro.viewListagem}"/>
 		
 		</h:form>

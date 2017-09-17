@@ -3,19 +3,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <f:view locale="en">
 	<h:head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		
 		<ui:insert name="header">
-			<title></title>
+			<title>Teste Prático FITCARD</title>
 		</ui:insert>
 		<h:outputScript library="javax.faces" name="jsf.js" target="head"/>
+		
+		<!-- Ultima versao compilada do bootstrap 4 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+ 
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'/>
+		<link href="https://fonts.googleapis.com/css?family=Raleway:400,900,700,800,600,500,300" rel="stylesheet" type="text/css"/>
+		 
+		<!-- 
+		Essa taglib insere antes do bootstrap, nao há parametro para inserir apos. 
+		<h:outputStylesheet library=\"css\" name=\"fitcard-theme.css\"/>
+		-->
+		<!-- <link type="text/css" rel="stylesheet" href="http://test.dev/grunt/css/fitcard-main.css"/> -->
+		<link type="text/css" rel="stylesheet" href="/desafiofit/javax.faces.resource/fitcard-main.css.xhtml?ln=css"/>
+		
 	</h:head>
 	
-	<h:body>
-		<ui:insert name="body">
-		</ui:insert>
+	<h:body styleClass="fitcard">
+		<div class="row page-header">
+			<div class="inner-row">
+		      <h1 class="project-name">FiTCARD</h1>
+		      <h3 class="project-tagline" style="margin-top: -14px;">Teste Prático</h3>
+		      <a href="https://www.fitcard.com.br" class="btn">fitcard.com.br</a>
+		    </div>
+		</div>
+		<div class="row body">
+			<ui:insert name="body">
+			</ui:insert>
+		</div>		
 		<ui:insert name="script">
 		</ui:insert>
 	</h:body>

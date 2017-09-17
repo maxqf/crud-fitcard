@@ -8,46 +8,47 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="template/ui.xhtml">
 	<ui:define name="body">
-		<h:form id="form">		    
-			<p:growl id="messages" showDetail="false" />
-		    <p:dataTable var="estabelecimento" value="#{mbCadastro.estabelecimentos}">
-			    <p:column headerText="Razão Social">
-			        <h:outputText value="#{estabelecimento.razaoSocial}" />
-			    </p:column>
-		
-			    <p:column headerText="CNPJ">
-			        <h:outputText value="#{estabelecimento.cnpj}" />
-			    </p:column>
-			    
-			    <p:column headerText="Status">
-			    		    	
-			        <h:outputText value="Ativo" rendered="#{estabelecimento.status}"/>
-			        
-			        <h:outputText value="Inativo" rendered="#{not estabelecimento.status}"/>
-			    	
-			    </p:column>
-			    
-			    <p:column headerText="Operações">
-			    	
-			    	 <p:commandButton action="#{mbCadastro.abrir(estabelecimento)}" ajax="false" value="Abrir"/>
-			    
-				    <p:commandButton action="#{mbCadastro.editar(estabelecimento)}" ajax="false" value="Editar"/>
-				    
-				    <p:commandButton action="#{mbCadastro.remover(estabelecimento)}" update="@form" ajax="true" value="Remover">
-				    	<p:confirm header="Confirmar" message="Você tem certeza que quer remover o estabelecimento?" icon="ui-icon-alert" />
-				    </p:commandButton>
-				    
-				    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-				    </p:confirmDialog>
-			    </p:column>
-			 
-			</p:dataTable>
-			
-			<p:commandButton value="Cadastrar" action="#{mbCadastro.initCadastro}" style="margin-top:20px;" immediate="true" ajax="false"/>
-		
-		</h:form>
-		
+		<div class="inner-row">
+				<h:form id="form">	    
+					<p:growl id="messages" showDetail="false" />
+				    <p:dataTable var="estabelecimento" value="#{mbCadastro.estabelecimentos}">
+					    <p:column headerText="Razão Social">
+					        <h:outputText value="#{estabelecimento.razaoSocial}" />
+					    </p:column>
+				
+					    <p:column headerText="CNPJ">
+					        <h:outputText value="#{estabelecimento.cnpj}" />
+					    </p:column>
+					    
+					    <p:column headerText="Status" styleClass="status">
+					    		    	
+					        <h:outputText value="Ativo" rendered="#{estabelecimento.status}"/>
+					        
+					        <h:outputText value="Inativo" rendered="#{not estabelecimento.status}"/>
+					    	
+					    </p:column>
+					    
+					    <p:column headerText="Operações" styleClass="operacoes">
+					    	
+					    	<p:commandButton action="#{mbCadastro.viewAbrir(estabelecimento)}" ajax="false" value="Abrir"/>
+					    
+						    <p:commandButton action="#{mbCadastro.viewEditar(estabelecimento)}" ajax="false" value="Editar"/>
+						    
+						    <p:commandButton action="#{mbCadastro.remover(estabelecimento)}" update="@form" ajax="true" value="Remover">
+						    	<p:confirm header="Confirmar" message="Você tem certeza que quer remover o estabelecimento?" icon="ui-icon-alert" />
+						    </p:commandButton>
+						    
+						    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						    </p:confirmDialog>
+					    </p:column>
+					 
+					</p:dataTable>
+					
+					<p:commandButton value="Cadastrar" action="#{mbCadastro.initCadastro}" immediate="true" ajax="false" styleClass="btnCadastrar"/>
+				
+				</h:form>
+			</div>
 	</ui:define>
 </ui:composition>

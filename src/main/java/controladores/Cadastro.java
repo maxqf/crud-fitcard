@@ -82,7 +82,7 @@ public class Cadastro implements Serializable {
 	 * retorna regra de navegacao de listagem caso seja edicao
 	 * verificar faces-config.file 
 	 */
-	public String cadastrar() {
+	public String cadastrar(boolean reset) {
 		
 		try {
 			
@@ -94,7 +94,7 @@ public class Cadastro implements Serializable {
 			 */
 			if(!validaRegrasDeNegocio()) {
 				
-				return "view_cadastro_estabelecimento";
+				return viewCadastro();
 				
 			}else if(endereco!= null && endereco.getTbcidade() != null) {	
 				
@@ -119,15 +119,29 @@ public class Cadastro implements Serializable {
 			
 			MegaUtil.ensureAddErrorMessage(e, "Ocorreu um erro de persistência");
 			
-			return "view_cadastro_estabelecimento";
+			return  viewCadastro();
 			
 		}
 
-		MegaUtil.addSuccessMessage("Estabelecimento adicionado com sucesso.");
+		MegaUtil.addSuccessMessage("Estabelecimento gravado com sucesso.");
 		
-		resetaControlador();
+		if(reset) {			
+			resetaControlador();
+		}
 		
-		return "view_cadastro_estabelecimento";
+		return viewCadastro();
+	}
+	
+	/*
+	 * Comando de edição, realiza a mesma operação de persistencia que cadastro.
+	 * Retorna view de edicao
+	 * */
+	public String editar() {
+			
+		cadastrar(false);
+		
+		return viewEditar();
+	
 	}
 	
 
@@ -135,12 +149,12 @@ public class Cadastro implements Serializable {
 	 * Método interno para a view de listagem
 	 * Retorna a regra de navegacao para detalhar estabelecimento
 	 */
-	public String abrir(Estabelecimento estabelecimento) {
+	public String viewAbrir(Estabelecimento estabelecimento) {
 		
 		resetaControlador();
 		
 		//Reusa o método de edição
-		editar(estabelecimento); 
+		viewEditar(estabelecimento); 
 		
 		return "view_abrir_estabelecimento";
 	}
@@ -149,19 +163,19 @@ public class Cadastro implements Serializable {
 	 * Método interno para a view de edicao
 	 * Retorna a regra de navegacao
 	 */
-	public String editar(Estabelecimento estabelecimento) {
+	public String viewEditar(Estabelecimento estabelecimento) {
 		
 		this.estabelecimento = estabelecimento;
 		
 		this.endereco = estabelecimento.getTbendereco();
 		
-		if(endereco!=null){
+		if(endereco!=null && endereco.getTbcidade()!=null){
 			
 			this.estado = endereco.getTbcidade().getTbestado();
 		
 		}
 
-		return "view_cadastro_estabelecimento";
+		return viewEditar();
 	}
 	
 	/*
@@ -189,12 +203,33 @@ public class Cadastro implements Serializable {
 			
 		} finally {
 			
-			return "view_listagem_estabelecimentos";
+			return  viewListagem();
 			
 		}
 	
 	}
-
+		
+	public String viewListagem() {
+		
+		return "view_listagem_estabelecimentos";
+		
+	}
+	
+	public String viewCadastro() {
+		
+		return "view_cadastro_estabelecimento";
+		
+	}
+	
+	public String viewEditar() {
+		
+		return "view_editar_estabelecimento";
+		
+	}
+	
+	/*
+	 * Regras de negócio
+	 * */
 	public boolean validaRegrasDeNegocio() {
 
 		if(estabelecimento.getRazaoSocial().isEmpty()){	
@@ -248,7 +283,7 @@ public class Cadastro implements Serializable {
 
 		estabelecimento = new Estabelecimento();
 
-		return "view_cadastro_estabelecimento";
+		return viewCadastro();
 	}
 
 	/*
