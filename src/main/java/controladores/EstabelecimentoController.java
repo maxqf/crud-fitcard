@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -14,6 +15,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.expression.ComponentNotFoundException;
@@ -84,6 +86,8 @@ public class EstabelecimentoController implements Serializable {
 	 */
 	public String cadastrar(boolean reset) {
 		
+		logaPersistencia();
+		
 		try {
 			
 			EntityTransaction tx = GerenciadorEntidade().getTransaction();
@@ -144,7 +148,6 @@ public class EstabelecimentoController implements Serializable {
 		return viewEditar();
 	
 	}
-	
 
 	/*
 	 * Método interno para a view de listagem
@@ -369,5 +372,17 @@ public class EstabelecimentoController implements Serializable {
 		return query.getResultList();
 
 	}
-
+	
+	public void logaPersistencia() {
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");
+		
+		if (ipAddress == null) {
+		    ipAddress = request.getRemoteAddr();
+		}
+		if(ipAddress != null) {
+			System.out.println(String.format("IP: %s -- as %s", ipAddress, new Date().toString()));			
+		}
+	}
 }
