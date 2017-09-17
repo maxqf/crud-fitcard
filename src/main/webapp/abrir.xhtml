@@ -8,8 +8,8 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="template/ui.xhtml">
 	<ui:define name="body">
-		<h:form id="form">
-		    <p:panel id="panel" header="Estabelecimento" style="margin-bottom:10px;">		        
+		<h:form id="form" styleClass="cadastro abrir">
+		    <p:panel id="panel" header="Estabelecimento - Consulta">		        
 		        <p:growl id="messages" showDetail="false" />
 		        
 		        <h:panelGrid columns="4" cellpadding="5">
@@ -29,38 +29,28 @@
 	                <h:outputText  id="enderecoId" value="#{mbEstabelecimento.endereco.endereco}" label="Endereço"/>
 		            
 		            <p:outputLabel for="cidadeId" value="Cidade:" />
-		            <p:selectOneMenu id="cidadeId" value="#{mbEstabelecimento.endereco.tbcidade}" process="@this" disabled="true">
-		                <f:selectItem itemLabel="Selecione a cidade" itemValue="" noSelectionOption="true" />
-		                <f:selectItems value="#{mbEstabelecimento.cidades}"/>
-		            </p:selectOneMenu>
-
+		            <h:outputText  id="cidadeId" value="#{mbEstabelecimento.endereco.tbcidade.nome}" label="Cidade"/>
+		            
 		            <p:outputLabel for="estadoId" value="Estado:" />
-		            <p:selectOneMenu id="estadoId" value="#{mbEstabelecimento.estado}" process="@this" disabled="true">
-		                <p:ajax event="change" update="cidadeId"/>
-		                <f:selectItem itemLabel="Selecione o estado" itemValue="" noSelectionOption="true" />
-		                <f:selectItems value="#{mbEstabelecimento.estados}"/>
-		            </p:selectOneMenu>
-		          
+		            <h:outputText  id="estadoId" value="#{mbEstabelecimento.endereco.tbcidade.tbestado.nome}" label="Estado"/>
+	
 		            <p:outputLabel for="telefoneId" value="Telefone" /> 
 		            <h:outputText  id="telefoneId" value="#{mbEstabelecimento.estabelecimento.telefone}" label="Telefone"/>
          
 		            <p:outputLabel for="dataCadastroId" value="Data do Cadastro:" /> 
-	           		<p:calendar id="dataCadastroId" value="#{mbEstabelecimento.estabelecimento.dataCadastro}" pattern="dd/MM/yyyy" mask="true" disabled="true">
-	           			<p:ajax event="blur" />
-    				</p:calendar>
-	                
+		            <h:outputText  id="dataCadastroId" value="#{mbEstabelecimento.estabelecimento.dataCadastro}" label="Data do Cadastro">
+		            	<f:convertDateTime pattern="dd/MM/yyyy"/>
+		            </h:outputText>
+					
 		            <p:outputLabel for="categoriaId" value="Categoria:" />
-		            <p:selectOneMenu id="categoriaId" value="#{mbEstabelecimento.estabelecimento.tbcategoria}" disabled="true">
-		                <f:selectItem itemLabel="Selecione a categoria" itemValue="" noSelectionOption="true" />
-		                <f:selectItems value="#{mbEstabelecimento.categorias}" />
-		            </p:selectOneMenu>
-	               	
-	               	<p:outputLabel for="statusId" value="Status:" />	            
-	                <p:selectOneMenu id="statusId" value="#{mbEstabelecimento.estabelecimento.status}" label="Status" disabled="true">
-			            <f:selectItem itemLabel="Ativo" itemValue="true" />
-			            <f:selectItem itemLabel="Inativo" itemValue="false" />
-			        </p:selectOneMenu>
+		            <h:outputText  id="categoriaId" value="#{mbEstabelecimento.estabelecimento.tbcategoria.nome}" label="Categoria"/>
+		            
+	               	<p:outputLabel for="statusId" value="Status:" rendered="#{mbEstabelecimento.estabelecimento.status}"/>	            
+	                <h:outputText  id="statusId" value="Ativo" rendered="#{mbEstabelecimento.estabelecimento.status}" label="Status"/>
 	                
+	                <p:outputLabel for="statusIdfalse" value="Status:" rendered="#{not mbEstabelecimento.estabelecimento.status}"/>
+	                <h:outputText  id="statusIdfalse" value="Inativo" rendered="#{not mbEstabelecimento.estabelecimento.status}" label="Status"/>
+        
 		        </h:panelGrid>
 		    </p:panel>	
 		 	<p:commandButton value="Listar cadastrados" action="#{mbEstabelecimento.viewListagem}"/>

@@ -8,8 +8,8 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="template/ui.xhtml">
 	<ui:define name="body">
-		<h:form id="form">
-		    <p:panel id="panel" header="Estabelecimento - Editar informações">
+		<h:form id="form" styleClass="cadastro">
+		    <p:panel id="panel" header="Estabelecimento - Editar">
 		        
 		        <p:growl id="messages" showDetail="false" />
 		        
@@ -46,8 +46,8 @@
 		            <p:inputText id="telefoneId" value="#{mbEstabelecimento.estabelecimento.telefone}" label="Telefone"/>
          
 		            <p:outputLabel for="dataCadastroId" value="Data do Cadastro:" /> 
-	           		<p:calendar id="dataCadastroId" value="#{mbEstabelecimento.estabelecimento.dataCadastro}" pattern="dd/MM/yyyy" mask="true">
-	           			<p:ajax event="blur" />
+	           		<p:calendar id="dataCadastroId" value="#{mbEstabelecimento.estabelecimento.dataCadastro}" pattern="dd/MM/yyyy" converterMessage="Formato de data inválido. Exemplo: 22/01/2017" mask="true">	
+	           			<p:ajax execute="dataCadastroId" update="messages" />
     				</p:calendar>
 	                
 		            <p:outputLabel for="categoriaId" value="Categoria:" />
@@ -65,7 +65,7 @@
 	                
 		        </h:panelGrid>
 		    </p:panel>	
-		  	<p:commandButton value="Editar" update="panel" actionListener="#{mbEstabelecimento.editar}" ajax="false" />
+		  	<p:commandButton value="Editar" update="panel" actionListener="#{mbEstabelecimento.editar}" ajax="false"/>
 		 	<p:commandButton value="Listar cadastros" action="#{mbEstabelecimento.viewListagem}"/>
 		
 		</h:form>

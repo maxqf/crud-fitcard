@@ -8,8 +8,8 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	template="template/ui.xhtml">
 	<ui:define name="body">
-		<h:form id="form">
-		    <p:panel id="panel" header="Estabelecimento">
+		<h:form id="form" styleClass="cadastro">
+		    <p:panel id="panel" header="Estabelecimento - Cadastro">
 		        
 		        <p:growl id="messages" showDetail="false" />
 		        
@@ -46,13 +46,12 @@
 		            <p:inputText id="telefoneId" value="#{mbEstabelecimento.estabelecimento.telefone}" label="Telefone"/>
          
 		            <p:outputLabel for="dataCadastroId" value="Data do Cadastro:" /> 
-	           		<p:calendar id="dataCadastroId" value="#{mbEstabelecimento.estabelecimento.dataCadastro}" pattern="dd/MM/yyyy" mask="true">
-	           			<p:ajax event="blur" />
+	           		<p:calendar id="dataCadastroId" value="#{mbEstabelecimento.estabelecimento.dataCadastro}" pattern="dd/MM/yyyy" converterMessage="Formato de data inválido. Exemplo: 22/01/2017" mask="true">
+	           			<p:ajax execute="dataCadastroId" update="messages" />
     				</p:calendar>
-	                
+    				
 		            <p:outputLabel for="categoriaId" value="Categoria:" />
 		            <p:selectOneMenu id="categoriaId" value="#{mbEstabelecimento.estabelecimento.tbcategoria}">
-		               <!--  <p:ajax listener="#{dropdownView.onCountryChange}" update="city" /> -->
 		                <f:selectItem itemLabel="Selecione a categoria" itemValue="" noSelectionOption="true" />
 		                <f:selectItems value="#{mbEstabelecimento.categorias}" />
 		            </p:selectOneMenu>
@@ -65,7 +64,7 @@
 	                
 		        </h:panelGrid>
 		    </p:panel>	
-		  	<p:commandButton value="Cadastrar" update="panel" actionListener="#{mbEstabelecimento.cadastrar(true)}" ajax="false" />
+		  	<p:commandButton value="Cadastrar" update="panel" actionListener="#{mbEstabelecimento.cadastrar(true)}" ajax="false"/>
 		 	<p:commandButton value="Resetar" update="panel" process="@this" actionListener="#{mbEstabelecimento.resetaControlador}"/>
 		 	<p:commandButton value="Listar cadastros" action="#{mbEstabelecimento.viewListagem}"/>
 		

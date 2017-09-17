@@ -55,23 +55,31 @@ body.fitcard {
     }
     form{
       width: 100%;
+      
       div.ui-panel{
         margin-bottom: 10px;
       }
+      
       button[type=submit]{
         margin-right: 15px;
       }
-      /*.ui-panel-content.ui-widget-content{
-        padding: 0;
-      }*/
+
+      h3{
+        text-align: center;
+        margin-bottom: 10px;
+      }
     }
     form .ui-selectonemenu{
       width: 100%;
       min-width: 1px !important;
-      //max-width: 220px !important;
       padding: 0px;
       .ui-corner-right{
         width: auto;
+      }
+    }
+    .cadastro.abrir{
+      label{
+        font-weight: bold;
       }
     }
   }
@@ -81,6 +89,77 @@ body.fitcard {
   }
 
   .btnCadastrar{
-    margin-top: 1vw; 
+    margin-top: 1vw;
   }
+}
+
+@media screen and (min-width: 64em) {
+  .project-name {
+     font-size: 3.25rem;
+  }
+}
+
+@media screen and (max-width: 64em) {
+  .row.body{
+    margin: 3vw auto;
+    max-width: 75vw !important;
+    
+    form.cadastro{
+      table td{
+        display: inline-block !important;
+        width: 100%;
+      }
+      table label{
+        margin-bottom: 0;
+      }
+      table input{
+        width: 100%;
+      }
+    }
+  }
+  label{
+    font-weight: bold !important;
+  }
+  .ui-selectonemenu label{
+    font-weight: normal !important;
+  }
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+  .project-name {
+    font-size: 2.25rem !important;
+  }
+}
+
+@media screen and (max-width: 42em){
+  .project-name {
+    font-size: 1.75rem !important;
+  }
+  .row.body{
+    max-width: 90vw !important;
+  }
+  .listagem td {
+    word-wrap: break-word;
+  }
+}
+
+@media screen and (max-width: 425px){
+  body.fitcard .row.body form button[type=submit]{
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+  }
+  
+  .listagem td button[type=submit]{
+    width: 50px !important;
+    color: transparent;
+    text-shadow: none;
+    .ui-button-icon-left{
+      left: 25%;
+    }
+  }
+  
+  
 }
